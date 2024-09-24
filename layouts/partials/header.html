@@ -1,0 +1,139 @@
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="{{ .Site.Home.Permalink }}" class="logo">
+            {{ partial "svgs/home.svg" (dict "height" 25 "width" 25) . }}
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                {{ partial "svgs/menu.svg" (dict "height" 25 "width" 25) . }}
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <li>
+                    <a class="menu-link {{ if or ($currentPage.IsMenuCurrent "main" .)
+                        ($currentPage.HasMenuCurrent "main" .) }}active{{ end }}" href="{{ .URL }}">
+                        {{ .Name }}
+                    </a>
+                    {{ if .HasChildren }}
+                    <ul>
+                        {{ range .Children }}
+                        <li>
+                            <a class="menu-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"
+                                href="{{ .URL }}">
+                                {{ .Name }}
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                    {{ end }}
+                </li>
+                {{ end }}
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                <!-- Language List -->
+                {{ if .IsTranslated }}
+                    <li>
+                        <select aria-label="Select Language" class="lang-list" id="select-language" onchange="location = this.value;">
+                            {{ $siteLanguages := .Site.Languages}}
+                            {{ $pageLang := .Page.Lang}}
+                            {{ range .Page.AllTranslations }}
+                                {{ $translation := .}}
+                                {{ range $siteLanguages }}
+                                    {{ if eq $translation.Lang .Lang }}
+                                        {{ $selected := false }}
+                                        {{ if eq $pageLang .Lang}}
+                                            <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageCode | upper }}
+                                            </option>
+                                        {{ else }}
+                                            <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageCode | upper }}</option>
+                                        {{ end }}
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
+                        </select>                
+                    </li>
+                    <li class="menu-separator">
+                        <span>|</span>
+                    </li>
+                {{ end }}
+            </ul>
+            <a id="mode" href="#">
+                {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-sunny" "title" "LIGHT") . }}
+                {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-moon" "title" "DARK") . }}
+            </a>
+        </div>
+    </nav>
+</div>
+
+<style>
+    #mountain-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        z-index: -1; 
+    }
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-x: hidden;
+    }
+</style>
+
+<div id="mountain-container">
+    <svg id="background-dark" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 960 560" enable-background="new 0 0 960 560" xml:space="preserve"
+        style="width: 100%; height: auto;">
+        <g id="mountains">
+            <polygon fill="rgb(20, 20, 24)" points="0,530 110,350 230,480 320,310 480,500 580,330 740,420 960,320 960,560 0,560" />
+            <polygon fill="rgb(30, 30, 34)" points="0,470 50,300 180,440 300,280 450,460 610,270 780,390 960,310 960,560 0,560" />
+            <polygon fill="rgb(40, 40, 44)" points="0,510 90,340 210,470 370,320 540,490 670,330 960,380 960,560 0,560" />
+            <polygon fill="rgb(15, 15, 19)" points="70,560 180,380 310,500 470,350 650,520 790,400 960,450 960,560" />
+            <polygon fill="rgb(10, 10, 14)" points="0,550 160,420 300,540 480,440 660,550 960,470 960,560 0,560" />
+        </g>
+    </svg>
+
+    <svg id="background-light" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 960 560" enable-background="new 0 0 960 560" xml:space="preserve"
+        style="width: 100%; height: auto; display: none;">
+        <g id="mountains">               <!-- Front layer: lighter gray -->
+            <polygon fill="rgb(180, 180, 184)" points="0,530 110,350 230,480 320,310 480,500 580,330 740,420 960,320 960,560 0,560" />
+            <polygon fill="rgb(200, 200, 204)" points="0,470 50,300 180,440 300,280 450,460 610,270 780,390 960,310 960,560 0,560" />
+            <polygon fill="rgb(220, 220, 224)" points="0,510 90,340 210,470 370,320 540,490 670,330 960,380 960,560 0,560" />
+            <polygon fill="rgb(240, 240, 244)" points="70,560 180,380 310,500 470,350 650,520 790,400 960,450 960,560" />
+            <polygon fill="rgb(250, 250, 254)" points="0,550 160,420 300,540 480,440 660,550 960,470 960,560 0,560" />
+        </g>
+    </svg>
+</div>
+
+<script>
+    const element = document.querySelector('html');
+    const ml = document.getElementById("background-light");
+    const md = document.getElementById("background-dark");
+
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === "attributes" && mutation.attributeName === "class") {
+            if (element.classList.contains('dark')) {
+                md.style.display = "block";
+                ml.style.display = "none";
+            } else {
+                md.style.display = "none";
+                ml.style.display = "block";
+            }
+        }
+      });
+    });
+
+    observer.observe(element, {
+      attributes: true
+    });
+</script>

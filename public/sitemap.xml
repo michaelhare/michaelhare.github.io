@@ -2,14 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/contents/</loc>
+    <lastmod>2024-09-22T23:18:44-06:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-09-16T21:08:53-06:00</lastmod>
+    <lastmod>2024-09-22T23:18:44-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/contents/posts/test_2/</loc>
+    <lastmod>2024-09-22T23:18:44-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/a_past_to_remember/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/cats_of_the_west_escaping_the_heatwave/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/discovery/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/dragon_courage/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/family_preparations/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/fixing_mistakes_with_christopher_paolini/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/four_years_with_dragons/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-09-16T21:08:53-06:00</lastmod>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/test/</loc>
-    <lastmod>2024-09-16T21:08:53-06:00</lastmod>
+    <loc>http://localhost:1313/posts/dear_girl_from_the_library/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/the_frozen_valley/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/the_last_sparkling_trilogy_blurb/</loc>
+    <lastmod>2024-09-22T21:08:53-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
